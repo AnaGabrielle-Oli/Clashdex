@@ -8,8 +8,20 @@
 import SwiftUI
 
 struct CardView: View {
+    @State var cards: [Card] = []
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            List(cards) { card in
+                HStack{
+                    Text(card.name)
+                }
+            }
+        }
+        .padding()
+        .task{
+            try? await cards = CardsAPI.fetchCard()
+        }
     }
 }
 
