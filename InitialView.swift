@@ -1,6 +1,6 @@
 //
 //  InitialView.swift
-//  Clashdex
+//  Aula01
 //
 //  Created by Aluno Mack on 22/05/26.
 //
@@ -8,11 +8,45 @@
 import SwiftUI
 
 struct InitialView: View {
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Inicio")
+            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+            .bold()
+            .offset(x: -132, y: -44)
+        
+        Categoria(titulo: "comum")
+        Categoria(titulo: "rara")
+        Categoria(titulo: "epica")
+        Categoria(titulo: "lendario")
+        Categoria(titulo: "heroi")
+
+        
+
+
     }
+    
+     
 }
 
+struct Categoria: View {
+    var titulo: String
+    
+
+    var body: some View {
+        ZStack{
+            Button(titulo){
+                
+            }.frame(width: 330, height: 128)
+                .foregroundStyle(.white)
+                .background(Color.black)
+                .cornerRadius(30)
+                
+        }
+        
+             
+    }
+}
 #Preview {
     InitialView()
 }
