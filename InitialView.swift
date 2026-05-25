@@ -10,42 +10,64 @@ import SwiftUI
 struct InitialView: View {
     
     var body: some View {
+
         Text("Inicio")
             .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
             .bold()
-            .offset(x: -110, y: -44)
-        
-        Categoria(titulo: "comum")
-        Categoria(titulo: "rara")
-        Categoria(titulo: "epica")
-        Categoria(titulo: "lendario")
         
 
+        NavigationStack(){
+            NavigationLink{
+                Text("ola")
+            }label:{
+                Text("Comum")
+                    .textStyled()
+            }
+            
+            NavigationLink{
+                Text("ola")
+            }label: {
+                Text("Raro")
+                    .textStyled()
+            }
+            
+            NavigationLink{
+                Text("a")
+            }label: {
+                Text("Épico")
+                    .textStyled()
+            }
+            
+            NavigationLink{
+                Text("a")
+            }label: {
+                Text("Lendário")
+                    .textStyled()
+            }
+            
+            
+        }
 
     }
     
      
 }
-
-struct Categoria: View {
-    var titulo: String
-    
-
-    var body: some View {
-        ZStack{
-            Button(titulo){
-                
-            }.frame(width: 330, height: 128)
-                .foregroundStyle(.white)
-                .background(Color.black)
-                .cornerRadius(30)
-                
-        }
-        
-             
+struct TextModifier: ViewModifier{
+    func body(content: Content) -> some View {
+        content
+            .frame(width: 330, height: 128)
+            .background(.black)
+            .contentShape(Rectangle())
+            .padding(6)
     }
 }
+
+extension View{
+    func textStyled() -> some View{
+        modifier(TextModifier())
+    }
+}
+
 #Preview {
     InitialView()
-    
 }
