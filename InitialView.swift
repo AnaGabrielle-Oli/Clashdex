@@ -13,14 +13,12 @@ struct InitialView: View {
         Text("Inicio")
             .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
             .bold()
-            .offset(x: -132, y: -44)
+            .offset(x: -110, y: -44)
         
         Categoria(titulo: "comum")
         Categoria(titulo: "rara")
         Categoria(titulo: "epica")
         Categoria(titulo: "lendario")
-        Categoria(titulo: "heroi")
-
         
 
 
@@ -49,4 +47,5 @@ struct Categoria: View {
 }
 #Preview {
     InitialView()
+    
 }
