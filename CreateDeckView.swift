@@ -14,7 +14,7 @@ struct CreateDeckView: View {
     }
 }
 
-struct Card: View{
+struct CardSelected: View{
     
     var body: some View{
         Button(""){
@@ -36,17 +36,17 @@ struct DeckBar: View{
         }label: {
             VStack{
                 HStack(spacing: 20){
-                    Card()
-                    Card()
-                    Card()
-                    Card()
+                    CardSelected()
+                    CardSelected()
+                    CardSelected()
+                    CardSelected()
                 }
                 
                 HStack(spacing: 20){
-                    Card()
-                    Card()
-                    Card()
-                    Card()
+                    CardSelected()
+                    CardSelected()
+                    CardSelected()
+                    CardSelected()
                 }
     
             }

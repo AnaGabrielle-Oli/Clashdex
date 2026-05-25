@@ -8,33 +8,46 @@
 import SwiftUI
 
 struct SearchView: View {
+    @State var troopID: Card.ID?
+    @State var searchText: String = ""
+    
+    @State  var troops: [Card] = []
+    
     var body: some View {
-        Text("Busca")
-            .font(.title)
-            .bold()
-            .offset(x: -110, y: -44)
+        
+        
 
         
         VStack{
             HStack{
-                CategoriaBusca(titulo: "Tropas")
-                CategoriaBusca(titulo: "Tropas")
+                Text("Busca")
+                    .font(.title)
+                    .bold()
+                    .padding(.horizontal, 50)
+                Spacer()
             }
-            HStack{
-                CategoriaBusca(titulo: "Tropas")
-                CategoriaBusca(titulo: "Tropas")
-            }
-            HStack{
-                CategoriaBusca(titulo: "Tropas")
-                CategoriaBusca(titulo: "Tropas")
-            }
-            HStack{
-                CategoriaBusca(titulo: "Tropas")
-                CategoriaBusca(titulo: "Tropas")
-            }
-            HStack{
-                CategoriaBusca(titulo: "Tropas")
-                CategoriaBusca(titulo: "Tropas")
+            NavigationStack{
+                
+                HStack{
+                    CategoriaBusca(titulo: "Tropas")
+                    CategoriaBusca(titulo: "Tropas")
+                }
+                HStack{
+                    CategoriaBusca(titulo: "Tropas")
+                    CategoriaBusca(titulo: "Tropas")
+                }
+                HStack{
+                    CategoriaBusca(titulo: "Tropas")
+                    CategoriaBusca(titulo: "Tropas")
+                }
+                HStack{
+                    CategoriaBusca(titulo: "Tropas")
+                    CategoriaBusca(titulo: "Tropas")
+                }
+                HStack{
+                    CategoriaBusca(titulo: "Tropas")
+                    CategoriaBusca(titulo: "Tropas")
+                }
             }
         }
         
@@ -45,20 +58,21 @@ struct SearchView: View {
 struct CategoriaBusca: View {
     var titulo: String
 
+    
     var body: some View {
-        ZStack{
-            Button(titulo){
-                
-            }.frame(width: 159, height: 104)
+        NavigationLink {
+            
+            ContentView()
+        } label: {
+            Text(titulo)
+                .frame(width: 159, height: 104)
                 .foregroundStyle(.white)
                 .background(Color.black)
                 .cornerRadius(30)
-                
         }
-        
-             
     }
 }
+
 
 #Preview {
     SearchView()
