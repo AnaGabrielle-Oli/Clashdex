@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct SearchView: View {
-    @State var troopID: Card.ID?
+
+    //@State var troopID: Card.ID?
     @State var searchText: String = ""
-    
-    @State  var troops: [Card] = []
+
+    //@State  var troops: [Card] = []*/
     
     var body: some View {
         
-        
-
         
         VStack{
             HStack{
@@ -50,7 +49,6 @@ struct SearchView: View {
                 }
             }
         }
-        
                 
     }
 }
@@ -58,11 +56,9 @@ struct SearchView: View {
 struct CategoriaBusca: View {
     var titulo: String
 
-    
     var body: some View {
         NavigationLink {
-            
-            ContentView()
+            GridView(keyWord: titulo)
         } label: {
             Text(titulo)
                 .frame(width: 159, height: 104)

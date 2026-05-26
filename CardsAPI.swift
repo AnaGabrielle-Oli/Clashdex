@@ -16,12 +16,16 @@ struct CardsAPI{
         return decoder
     }
                               
-    static func fetchCard() async throws -> [Card]{
+    static func fetchCard(_ filter: String? = nil) async throws -> [Card]{
         let request = URLRequest(url: endpoint, cachePolicy: .returnCacheDataElseLoad)
         
         let (data, _) = try await URLSession.shared.data(for: request)
                 
         let cards = try decoder.decode([Card].self, from: data)
+        
+        if let activeFilter = filter{
+            
+        }
         return cards
     }
 }
