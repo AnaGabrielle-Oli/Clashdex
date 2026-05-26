@@ -15,6 +15,7 @@ struct Card: Decodable, Identifiable{
     let type: String
     let rarity: String
     let arena: Int
+    let description: String
     let isEvolved: Bool
 }
 
