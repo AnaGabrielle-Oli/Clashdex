@@ -8,20 +8,43 @@
 import SwiftUI
 
 struct CardView: View {
-    @State var cards: [Card] = []
     
+
     var body: some View {
-        VStack {
-            List(cards) { card in
-                HStack{
-                    Text(card.name)
-                }
-            }
+
+        CardImageView(imagem: "rayquaza")
+        
+        TabView {
+            AboutPage(info: "ele tem uma espada")
+            
+            Text("teste")
         }
-        .padding()
-        .task{
-            try? await cards = CardsAPI.fetchCard()
-        }
+        .tabViewStyle(.page)
+        .background(.gray)
+        .frame(width: 269, height: 237)
+
+    }
+}
+
+struct CardImageView: View{
+    var imagem: String
+    var body: some View{
+        Image(imagem)
+            .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
+    }
+}
+struct AboutPage: View{
+    var info: String
+    
+    var body: some View{
+        Text(info)
+    }
+}
+
+struct StatisticPage: View{
+    
+    var body: some View{
+        Text("teste1")
     }
 }
 
