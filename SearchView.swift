@@ -2,60 +2,55 @@
 //  SearchView.swift
 //  Projetos
 //
-//  Created by Ricardo on 25/05/26.
+//  Created by Aluno Mack on 25/05/26.
 //
 
 import SwiftUI
 
 struct SearchView: View {
-
+    
     //@State var troopID: Card.ID?
     @State var searchText: String = ""
-
+    
     //@State  var troops: [Card] = []*/
     
     var body: some View {
+        @State var searchText = ""
         
         
-        VStack{
+        
+        NavigationStack{
+
             HStack{
-                Text("Busca")
-                    .font(.title)
-                    .bold()
-                    .padding(.horizontal, 50)
-                Spacer()
-            }
-            NavigationStack{
                 
-                HStack{
+                VStack{
                     CategoriaBusca(titulo: "Tropas")
                     CategoriaBusca(titulo: "Tropas")
-                }
-                HStack{
                     CategoriaBusca(titulo: "Tropas")
-                    CategoriaBusca(titulo: "Tropas")
-                }
-                HStack{
                     CategoriaBusca(titulo: "Tropas")
                     CategoriaBusca(titulo: "Tropas")
                 }
-                HStack{
+                
+                VStack{
                     CategoriaBusca(titulo: "Tropas")
                     CategoriaBusca(titulo: "Tropas")
-                }
-                HStack{
+                    CategoriaBusca(titulo: "Tropas")
                     CategoriaBusca(titulo: "Tropas")
                     CategoriaBusca(titulo: "Tropas")
                 }
             }
+            .navigationTitle("Buscar")
+            .searchable(text: $searchText, prompt: "Buscar carta")
+            
+            
         }
-                
+        
     }
 }
 
 struct CategoriaBusca: View {
     var titulo: String
-
+    
     var body: some View {
         NavigationLink {
             GridView(keyWord: titulo)
