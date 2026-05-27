@@ -18,45 +18,69 @@ struct GridView: View {
             Text("Não encontrado!")
         }else{
             if rarityWord.contains(keyWord){
-                GridCards()
+                GridCards(filterType:"rarity", typeInFilter: keyWord)
             }else if typeWord.contains(keyWord){
-                GridCards()
+                GridCards(filterType:"type", typeInFilter: keyWord)
             }
         }
     }
 }
 
 struct GridCards: View {
-    let columnsCount: Int = 4
+    let filterType: String
+    let typeInFilter: String
     
+    let columnsCount: Int = 4
     let gridSpacing: CGFloat = 16
 
+    @State var dataCards: [Card]?
+
     var body: some View {
+
          ScrollView {
              LazyVGrid(columns: Array(repeating: .init(
                         .flexible(), spacing: gridSpacing
                     ),
                     count: columnsCount
              )) {
-                 CardInGrid()
+                 if let cards = dataCards {
+                     ForEach(cards) { card in
+                         CardInGrid(actualCard: card)
+                     }
+                 }
              }
          }.task {
-             try? await cards = CardsAPI.fetchCard()
+             //try? await self.dataCards = CardsAPI.fetchCard(filterType, typeInFilter)     a tel ficava branca sem nada
+             do {
+                     
+                     let fetchedCards = try await CardsAPI.fetchCard(filterType, typeInFilter)
+                     print("Sucesso! Baixou \(fetchedCards.count) cartas.")
+                     self.dataCards = fetchedCards
+                 } catch {
+                    
+                     print("Erro ao buscar ou decodificar cartas: \(error)")
+                 }
          }
     }
 }
 
 struct CardInGrid: View {
+    var actualCard: Card
     var body: some View{
-        Button(""){
-            
-        }.frame(width: 73, height: 96)
-            .foregroundStyle(.white)
-            .background(Color.gray)
-            .cornerRadius(10)
+        Button{
+            CardView()
+        }label:{
+            Image(actualCard.highresImageFilename)
+                .resizable()
+                .scaledToFill()
+                .frame(width: 73, height: 96) // Força o tamanho do card
+                .clipped()
+        }
+        .frame(width: 73, height: 96)
+        .cornerRadius(10)
     }
 }
 
 #Preview {
-    GridView(keyWord: "oi")
+    GridView(keyWord: "Common")
 }
