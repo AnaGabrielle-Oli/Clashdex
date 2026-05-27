@@ -8,7 +8,7 @@
 import Foundation
 
 struct CardsAPI{
-    static let endpoint = URL(string: "https://royaleapi.github.io/cr-api-data/json/cards.json")!
+    static let endpoint = URL(string: "https://royaleapi.github.io/cr-api-data/json/cards_stats.json")!
                               
     static var decoder: JSONDecoder{
         let decoder = JSONDecoder()
