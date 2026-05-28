@@ -19,17 +19,17 @@ struct SearchView: View {
                         VStack {
                             CategoriaBusca(titulo: "Tropas", keyWord: "Troop")
                             CategoriaBusca(titulo: "Feitiços", keyWord: "Spell")
-                            CategoriaBusca(titulo: "Tropas", keyWord: "Troop")
-                            CategoriaBusca(titulo: "Tropas", keyWord: "Troop")
-                            CategoriaBusca(titulo: "Tropas", keyWord: "Troop")
+                            CategoriaBusca(titulo: "Goblin", keyWord: "goblinCards")
+                            CategoriaBusca(titulo: "Esqueletos", keyWord: "skeletonCards")
+                            CategoriaBusca(titulo: "Evoluídos", keyWord: "evolvedCards")
                         }
                         
                         VStack {
                             CategoriaBusca(titulo: "Construções", keyWord: "Building")
-                            CategoriaBusca(titulo: "Tropas", keyWord: "Troop")
-                            CategoriaBusca(titulo: "Tropas", keyWord: "Troop")
-                            CategoriaBusca(titulo: "Tropas", keyWord: "Troop")
-                            CategoriaBusca(titulo: "Tropas", keyWord: "Troop")
+                            CategoriaBusca(titulo: "Aéreos", keyWord: "aerialCards")
+                            CategoriaBusca(titulo: "Bárbaros", keyWord: "barbarianCards")
+                            CategoriaBusca(titulo: "Tanques", keyWord: "tankCards")
+                            CategoriaBusca(titulo: "Win-Conditions", keyWord: "winConditions")
                         }
                     }
                 } else {
