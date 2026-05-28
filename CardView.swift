@@ -51,6 +51,9 @@ struct CardImageView: View {
 //        }
         
         if !isImageDL {
+            VStack{
+                
+            }
             AsyncImage(url: card.imageCharacterURL) { phase in
                 switch phase {
                 case .empty:
@@ -60,7 +63,7 @@ struct CardImageView: View {
                 case .success(let image):
                     image
                         .resizable()
-                        .scaledToFill()
+                        .scaledToFit()
                         .frame(width: 329, height: 342)
                         .clipped()
                         .cornerRadius(10)
