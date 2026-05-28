@@ -20,28 +20,49 @@ struct InitialView: View {
                 GridView(keyWord: "Common")
             }label:{
                 Text("Comum")
-                    .textStyled()
+                    .frame(width: 330, height: 128)
+                    .background(Color(red: 41/255, green: 124/255, blue: 179/255))
+                    .foregroundColor(.white)
+                    .cornerRadius(40)
+                    .contentShape(Rectangle())
+                    .padding(6)
             }
             
             NavigationLink{
                 GridView(keyWord: "Rare")
             }label: {
                 Text("Raro")
-                    .textStyled()
+                    .frame(width: 330, height: 128)
+                    .background(Color(red: 250/255, green: 137/255, blue: 8/255))
+                    .foregroundColor(.white)
+                    .cornerRadius(40)
+                    .contentShape(Rectangle())
+                    .padding(6)
+                    
             }
             
             NavigationLink{
                 GridView(keyWord: "Epic")
             }label: {
                 Text("Épico")
-                    .textStyled()
+                    .frame(width: 330, height: 128)
+                    .background(Color(red: 114/255, green: 64/255, blue: 254/255))
+                    .foregroundColor(.white)
+                    .cornerRadius(40)
+                    .contentShape(Rectangle())
+                    .padding(6)
             }
             
             NavigationLink{
                 GridView(keyWord: "Legendary")
             }label: {
                 Text("Lendário")
-                    .textStyled()
+                    .frame(width: 330, height: 128)
+                    .background(Color(red: 250/255, green: 137/255, blue: 8/255))
+                    .foregroundColor(.white)
+                    .cornerRadius(40)
+                    .contentShape(Rectangle())
+                    .padding(6)
             }
             
             
@@ -51,13 +72,12 @@ struct InitialView: View {
     
      
 }
+/*
 struct TextModifier: ViewModifier{
     func body(content: Content) -> some View {
-        content
-            .frame(width: 330, height: 128)
-            .background(.black)
-            .contentShape(Rectangle())
-            .padding(6)
+        content.
+            
+
     }
 }
 
@@ -65,7 +85,7 @@ extension View{
     func textStyled() -> some View{
         modifier(TextModifier())
     }
-}
+}*/
 
 #Preview {
     InitialView()
