@@ -15,17 +15,15 @@ struct ContentView: View {
             }.tabItem {
                 Label("Inicio", systemImage: "crown")
             }
-            
-            NavigationStack{
-                SearchView()
-            }.tabItem {
-                Label("Buscar", systemImage: "magnifyingglass")
-            }
-            
             NavigationStack{
                 CreateDeckView()
             }.tabItem {
                 Label("Decks", systemImage: "book.closed.fill")
+            }
+            NavigationStack{
+                SearchView()
+            }.tabItem {
+                Label("Buscar", systemImage: "magnifyingglass")
             }
         }
     }
@@ -34,3 +32,4 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+
