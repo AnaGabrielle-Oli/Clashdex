@@ -15,7 +15,7 @@ struct ContentView: View {
             }.tabItem {
                 Label("Inicio", systemImage: "crown")
             }
-             
+            
             NavigationStack{
                 SearchView()
             }.tabItem {

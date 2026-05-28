@@ -1,81 +1,53 @@
 //
 //  CardView.swift
-//  Aula01
+//  Clashdex
 //
-//  Created by Aluno Mack on 25/05/26.
+//  Created by Aluno Mack on 22/05/26.
 //
 
 import SwiftUI
 
 struct CardView: View {
-    let card: Card
-
-    var body: some View {
-        VStack(spacing: 20) {
-            
-            CardImageView(card: card)
-            
-            Text(card.name)
-                .font(.largeTitle)
-                .bold()
-            
-            TabView {
-                AboutPage(card: card)
-                
-                StatisticPage(card: card)
-            }
-            .tabViewStyle(.page)
-            .background(.gray)
-            .frame(width: 269, height: 237)
-        }
-        .padding()
-    }
-}
-
-struct CardImageView: View {
-    let card: Card
     
-    var body: some View {
-        Image(card.key)
-            .resizable()
-            .scaledToFit()
-            .frame(width: 700, height: 200)
-    }
-}
 
-struct AboutPage: View {
-    let card: Card
+    var body: some View {
+
+        CardImageView(imagem: "rayquaza")
         
-    var body: some View {
-        VStack(spacing: 12) {
-            Text("Sobre")
-                .font(.title2)
-                .bold()
+        TabView {
+            AboutPage(info: "ele tem uma espada")
             
-            Text(card.description)
-                .multilineTextAlignment(.center)
-                .padding()
+            Text("teste")
         }
+        .tabViewStyle(.page)
+        .background(.gray)
+        .frame(width: 269, height: 237)
+
     }
 }
 
-struct StatisticPage: View {
-    let card: Card
+struct CardImageView: View{
+    var imagem: String
+    var body: some View{
+        Image(imagem)
+            .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
+    }
+}
+struct AboutPage: View{
+    var info: String
     
-    var body: some View {
-        VStack(spacing: 12) {
-            Text("Estatísticas")
-                .font(.title2)
-                .bold()
-            
-            Text("Elixir: \(card.elixir)")
-            Text("Raridade: \(card.rarity)")
-            Text("Tipo: \(card.type)")
-            Text("Arena: \(card.arena)")
-        }
+    var body: some View{
+        Text(info)
+    }
+}
+
+struct StatisticPage: View{
+    
+    var body: some View{
+        Text("teste1")
     }
 }
 
 #Preview {
-    CardView(card: .exemplo)
+    CardView()
 }

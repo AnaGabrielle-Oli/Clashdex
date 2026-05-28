@@ -14,31 +14,32 @@ struct InitialView: View {
         Text("Inicio")
             .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
             .bold()
-                
+        
+
         NavigationStack(){
             NavigationLink{
-                GridView(keyWord: "Common")
+                Text("ola")
             }label:{
                 Text("Comum")
                     .textStyled()
             }
             
             NavigationLink{
-                GridView(keyWord: "Rare")
+                Text("ola")
             }label: {
                 Text("Raro")
                     .textStyled()
             }
             
             NavigationLink{
-                GridView(keyWord: "Epic")
+                Text("a")
             }label: {
                 Text("Épico")
                     .textStyled()
             }
             
             NavigationLink{
-                GridView(keyWord: "Legendary")
+                Text("a")
             }label: {
                 Text("Lendário")
                     .textStyled()
