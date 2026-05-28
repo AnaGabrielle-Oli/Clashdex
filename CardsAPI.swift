@@ -34,9 +34,7 @@ struct CardsAPI {
         } else if filterType == "type" {
             return cards.filter { $0.type == activeFilter }
         } else if filterType == "name" {
-            return cards.filter {
-                $0.name.localizedCaseInsensitiveContains(activeFilter)
-            }
+            return cards
         }
 
         return cards
