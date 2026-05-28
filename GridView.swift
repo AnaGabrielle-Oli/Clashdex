@@ -9,19 +9,17 @@ import SwiftUI
 
 struct GridView: View {
     let keyWord: String
-    
-    let rarityWord: [String] = ["Common", "Rare", "Epic", "Legendary"]
+
+    let rarityWord: [String] = ["Common", "Rare", "Epic", "Legendary", "Champion"]
     let typeWord: [String] = ["Troop", "Building", "Spell"]
-    
+
     var body: some View {
-        if !rarityWord.contains(keyWord) && !typeWord.contains(keyWord){
-            Text("Não encontrado!")
-        }else{
-            if rarityWord.contains(keyWord){
-                GridCards(filterType:"rarity", typeInFilter: keyWord)
-            }else if typeWord.contains(keyWord){
-                GridCards(filterType:"type", typeInFilter: keyWord)
-            }
+        if rarityWord.contains(keyWord) {
+            GridCards(filterType: "rarity", typeInFilter: keyWord)
+        } else if typeWord.contains(keyWord) {
+            GridCards(filterType: "type", typeInFilter: keyWord)
+        } else {
+            GridCards(filterType: "name", typeInFilter: keyWord)
         }
     }
 }
@@ -32,55 +30,72 @@ struct GridCards: View {
     
     let columnsCount: Int = 4
     let gridSpacing: CGFloat = 16
-
-    @State var dataCards: [Card]?
-
+    
+    @State private var dataCards: [Card] = []
+    @State private var isLoading = true
+    @State private var errorMessage: String?
+    
     var body: some View {
-
-         ScrollView {
-             LazyVGrid(columns: Array(repeating: .init(
-                        .flexible(), spacing: gridSpacing
-                    ),
-                    count: columnsCount
-             )) {
-                 if let cards = dataCards {
-                     ForEach(cards) { card in
-                         CardInGrid(actualCard: card)
-                     }
-                 }
-             }
-         }.task {
-             //try? await self.dataCards = CardsAPI.fetchCard(filterType, typeInFilter)     a tel ficava branca sem nada
-             do {
-                     
-                     let fetchedCards = try await CardsAPI.fetchCard(filterType, typeInFilter)
-                     print("Sucesso! Baixou \(fetchedCards.count) cartas.")
-                     self.dataCards = fetchedCards
-                 } catch {
-                    
-                     print("Erro ao buscar ou decodificar cartas: \(error)")
-                 }
-         }
+        Group {
+            if isLoading {
+                ProgressView("Carregando cartas...")
+            } else if dataCards.isEmpty {
+                Text("Não encontrado!")
+            } else {
+                ScrollView {
+                    LazyVGrid(
+                        columns: Array(
+                            repeating: GridItem(.flexible(), spacing: gridSpacing),
+                            count: columnsCount
+                        ),
+                        spacing: gridSpacing
+                    ) {
+                        ForEach(dataCards) { card in
+                            CardInGrid(actualCard: card)
+                        }
+                    }
+                    .padding()
+                }
+            }
+        }
+        .task(id: "\(filterType)-\(typeInFilter)") {
+            isLoading = true
+            
+            do {
+                let fetchedCards = try await CardsAPI.fetchCard(filterType, typeInFilter)
+                dataCards = fetchedCards
+            } catch {
+                print("Erro ao buscar ou decodificar cartas: \(error)")
+            }
+            
+            isLoading = false
+        }
     }
 }
 
 struct CardInGrid: View {
     var actualCard: Card
-    var body: some View{
-        Button{
-            CardView()
-        }label:{
-            Image(actualCard.highresImageFilename)
-                .resizable()
-                .scaledToFill()
-                .frame(width: 73, height: 96) // Força o tamanho do card
-                .clipped()
+    
+    var body: some View {
+        NavigationLink {
+            CardView(card: actualCard)
+        } label: {
+            AsyncImage(url: actualCard.imageURL) { image in
+                image
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 73, height: 96)
+                    .clipped()
+                    .cornerRadius(10)
+            } placeholder: {
+                ProgressView()
+                    .frame(width: 73, height: 96)
+            }
         }
-        .frame(width: 73, height: 96)
-        .cornerRadius(10)
+        .buttonStyle(.plain)
     }
 }
 
 #Preview {
-    GridView(keyWord: "Common")
+    GridView(keyWord: "")
 }

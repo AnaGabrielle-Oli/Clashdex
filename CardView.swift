@@ -1,53 +1,81 @@
 //
 //  CardView.swift
-//  Clashdex
+//  Aula01
 //
-//  Created by Aluno Mack on 22/05/26.
+//  Created by Aluno Mack on 25/05/26.
 //
 
 import SwiftUI
 
 struct CardView: View {
-    
+    let card: Card
 
     var body: some View {
-
-        CardImageView(imagem: "rayquaza")
-        
-        TabView {
-            AboutPage(info: "ele tem uma espada")
+        VStack(spacing: 20) {
             
-            Text("teste")
+            CardImageView(card: card)
+            
+            Text(card.name)
+                .font(.largeTitle)
+                .bold()
+            
+            TabView {
+                AboutPage(card: card)
+                
+                StatisticPage(card: card)
+            }
+            .tabViewStyle(.page)
+            .background(.gray)
+            .frame(width: 269, height: 237)
         }
-        .tabViewStyle(.page)
-        .background(.gray)
-        .frame(width: 269, height: 237)
-
+        .padding()
     }
 }
 
-struct CardImageView: View{
-    var imagem: String
-    var body: some View{
-        Image(imagem)
-            .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
-    }
-}
-struct AboutPage: View{
-    var info: String
+struct CardImageView: View {
+    let card: Card
     
-    var body: some View{
-        Text(info)
+    var body: some View {
+        Image(card.key)
+            .resizable()
+            .scaledToFit()
+            .frame(width: 700, height: 200)
     }
 }
 
-struct StatisticPage: View{
+struct AboutPage: View {
+    let card: Card
+        
+    var body: some View {
+        VStack(spacing: 12) {
+            Text("Sobre")
+                .font(.title2)
+                .bold()
+            
+            Text(card.description)
+                .multilineTextAlignment(.center)
+                .padding()
+        }
+    }
+}
+
+struct StatisticPage: View {
+    let card: Card
     
-    var body: some View{
-        Text("teste1")
+    var body: some View {
+        VStack(spacing: 12) {
+            Text("Estatísticas")
+                .font(.title2)
+                .bold()
+            
+            Text("Elixir: \(card.elixir)")
+            Text("Raridade: \(card.rarity)")
+            Text("Tipo: \(card.type)")
+            Text("Arena: \(card.arena)")
+        }
     }
 }
 
 #Preview {
-    CardView()
+    CardView(card: .exemplo)
 }
