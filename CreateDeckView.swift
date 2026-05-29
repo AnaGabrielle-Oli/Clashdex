@@ -51,8 +51,7 @@ struct DeckBar: View{
     
             }
             .frame(width: 387, height: 231)
-            .foregroundStyle(.white)
-            .background(Color.black)
+            .background(Color.gray.opacity(0.6))
             .cornerRadius(10)
             
         }
@@ -66,15 +65,19 @@ struct NewDeck: View{
         }label: {
             ZStack{
                 Circle()
+                    .stroke(.white.opacity(0.3), lineWidth: 1.5)
                     .frame(width: 80, height: 80)
                 Text("+")
                     .foregroundStyle(.black)
                 
             }
         }.frame(width: 387, height: 231)
-            .foregroundStyle(.white)
-            .background(Color.gray)
+        
+            .foregroundStyle(.gray.opacity(0.1))
+            .background(Color.gray.opacity(0.3))
             .cornerRadius(10)
+        
+            
             
     }
 }

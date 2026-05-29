@@ -110,7 +110,13 @@ struct GridCards: View {
             isLoading = true
             
             do {
-                let apiFilter = (filterType == "category" || filterType == "name") ? "all" : filterType
+                var apiFilter: String
+                
+                if filterType == "category" || filterType == "name" {
+                    apiFilter = "all"
+                } else {
+                    apiFilter = filterType
+                }
                 
                 let fetchedCards = try await CardsAPI.fetchCard(apiFilter, typeInFilter)
                 dataCards = fetchedCards

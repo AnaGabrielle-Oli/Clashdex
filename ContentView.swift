@@ -9,23 +9,52 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        TabView{
-            NavigationStack{
-                InitialView()
-            }.tabItem {
+        TabView {
+            NavigationStack {
+                ZStack {
+                    appGradient
+                    InitialView()
+                }
+            }
+            .tabItem {
                 Label("Inicio", systemImage: "crown")
             }
-            NavigationStack{
-                CreateDeckView() 
-            }.tabItem {
+
+            NavigationStack {
+                ZStack {
+                    appGradient
+                    VStack{ 
+                        CreateDeckView()
+
+                    }
+                }
+            }
+            .tabItem {
                 Label("Decks", systemImage: "book.closed.fill")
             }
-            NavigationStack{
-                SearchView()
-            }.tabItem {
+
+            NavigationStack {
+                ZStack {
+                    appGradient
+                    SearchView()
+                }
+            }
+            .tabItem {
                 Label("Buscar", systemImage: "magnifyingglass")
             }
         }
+    }
+
+    var appGradient: some View {
+        LinearGradient(
+            colors: [
+                Color.blue.opacity(0.35),
+                Color.green.opacity(0.30),
+            ],
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+        )
+        .ignoresSafeArea()
     }
 }
 

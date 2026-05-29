@@ -20,7 +20,9 @@ struct CardView: View {
         case "Epic":
             return Color(red: 175/255, green: 113/255, blue: 253/255).opacity(0.2)
         case "Legendary":
-            return Color(red: 250/255, green: 137/255, blue: 8/255).opacity(0.2)
+            return Color(red: 82/255, green: 205/255, blue: 161/255).opacity(0.2)
+        case "Champion":
+            return Color(red: 255/255, green: 220/255, blue: 54/255).opacity(0.2)
         default:
             return Color.gray.opacity(0.2)
         }
@@ -65,18 +67,19 @@ struct CardImageView: View {
     
     var body: some View {
         
+        let imageName = card.key.replacingOccurrences(of: "-", with: "_")
+
         if let path = Bundle.main.path(
-            forResource: card.key,
+            forResource: imageName,
             ofType: "png"
         ),
-           let uiImage = UIImage(contentsOfFile: path) {
+        let uiImage = UIImage(contentsOfFile: path) {
             Image(uiImage: uiImage)
                 .resizable()
                 .scaledToFit()
                 .frame(width: 500, height: 300)
-            
         } else {
-            ProgressView()
+                ProgressView()
         }
     }
 }

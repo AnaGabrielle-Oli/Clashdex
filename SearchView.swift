@@ -15,24 +15,26 @@ struct SearchView: View {
         NavigationStack {
             VStack {
                 if searchText.isEmpty {
-                    HStack(spacing: 16) {
-                        VStack(spacing: 12) {
-                            CategoriaBusca(titulo: "Tropas", keyWord: "Troop")
-                            CategoriaBusca(titulo: "Feitiços", keyWord: "Spell")
-                            CategoriaBusca(titulo: "Goblin", keyWord: "goblin")
-                            CategoriaBusca(titulo: "Esqueletos", keyWord: "skeleton")
-                            CategoriaBusca(titulo: "Evoluídos", keyWord: "evolved")
+                    ScrollView{
+                        HStack(spacing: 16) {
+                            VStack(spacing: 12) {
+                                CategoriaBusca(titulo: "Tropas", keyWord: "Troop")
+                                CategoriaBusca(titulo: "Feitiços", keyWord: "Spell")
+                                CategoriaBusca(titulo: "Goblin", keyWord: "goblin")
+                                CategoriaBusca(titulo: "Esqueletos", keyWord: "skeleton")
+                                CategoriaBusca(titulo: "Evoluídos", keyWord: "evolved")
+                            }
+                            
+                            VStack(spacing: 12) {
+                                CategoriaBusca(titulo: "Construções", keyWord: "Building")
+                                CategoriaBusca(titulo: "Aéreos", keyWord: "aerial")
+                                CategoriaBusca(titulo: "Bárbaros", keyWord: "barbarian")
+                                CategoriaBusca(titulo: "Tanques", keyWord: "tank")
+                                CategoriaBusca(titulo: "Win-Conditions", keyWord: "winCondition")
+                            }
                         }
-                        
-                        VStack(spacing: 12) {
-                            CategoriaBusca(titulo: "Construções", keyWord: "Building")
-                            CategoriaBusca(titulo: "Aéreos", keyWord: "aerial")
-                            CategoriaBusca(titulo: "Bárbaros", keyWord: "barbarian")
-                            CategoriaBusca(titulo: "Tanques", keyWord: "tank")
-                            CategoriaBusca(titulo: "Win-Conditions", keyWord: "winCondition") 
-                        }
+                        .padding(.horizontal)
                     }
-                    .padding(.horizontal)
                 } else {
                     GridView(keyWord: searchText)
                 }
@@ -62,7 +64,7 @@ struct CategoriaBusca: View {
                 .frame(width: 159, height: 104)
                 .foregroundStyle(.white)
                 .background(Color.black)
-                .cornerRadius(20) 
+                .cornerRadius(20)
         }
     }
 }
