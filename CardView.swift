@@ -33,20 +33,23 @@ struct CardView: View {
         ZStack{
             backgroundColor
                 .ignoresSafeArea()
-            VStack(spacing: 12) {
-                
-                CardImageView(card: card)
-                    .padding(.top, 20)
+            VStack(spacing: 8) {
                 
                 Text(card.name)
                     .font(.largeTitle)
                     .bold()
+                    .padding(.top, 20)
+                CardImageView(card: card)
+                    .padding(.bottom, -40)
+                    
+                
                 
                 TabView {
                     AboutPage(card: card)
                     
                     StatisticPage(card: card)
                 }
+                
                 .tabViewStyle(.page)
                 .background(backgroundColor)
                 .frame(width: 280, height: 250)
@@ -87,7 +90,7 @@ struct AboutPage: View {
     let card: Card
     
     var body: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 8) {
             Text("Sobre")
                 .font(.title2)
                 .bold()
