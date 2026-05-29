@@ -15,23 +15,24 @@ struct SearchView: View {
         NavigationStack {
             VStack {
                 if searchText.isEmpty {
-                    HStack {
-                        VStack {
+                    HStack(spacing: 16) {
+                        VStack(spacing: 12) {
                             CategoriaBusca(titulo: "Tropas", keyWord: "Troop")
                             CategoriaBusca(titulo: "Feitiços", keyWord: "Spell")
-                            CategoriaBusca(titulo: "Goblin", keyWord: "goblinCards")
-                            CategoriaBusca(titulo: "Esqueletos", keyWord: "skeletonCards")
-                            CategoriaBusca(titulo: "Evoluídos", keyWord: "evolvedCards")
+                            CategoriaBusca(titulo: "Goblin", keyWord: "goblin")
+                            CategoriaBusca(titulo: "Esqueletos", keyWord: "skeleton")
+                            CategoriaBusca(titulo: "Evoluídos", keyWord: "evolved")
                         }
                         
-                        VStack {
+                        VStack(spacing: 12) {
                             CategoriaBusca(titulo: "Construções", keyWord: "Building")
-                            CategoriaBusca(titulo: "Aéreos", keyWord: "aerialCards")
-                            CategoriaBusca(titulo: "Bárbaros", keyWord: "barbarianCards")
-                            CategoriaBusca(titulo: "Tanques", keyWord: "tankCards")
-                            CategoriaBusca(titulo: "Win-Conditions", keyWord: "winConditions")
+                            CategoriaBusca(titulo: "Aéreos", keyWord: "aerial")
+                            CategoriaBusca(titulo: "Bárbaros", keyWord: "barbarian")
+                            CategoriaBusca(titulo: "Tanques", keyWord: "tank")
+                            CategoriaBusca(titulo: "Win-Conditions", keyWord: "winCondition") 
                         }
                     }
+                    .padding(.horizontal)
                 } else {
                     GridView(keyWord: searchText)
                 }
@@ -57,10 +58,11 @@ struct CategoriaBusca: View {
             GridView(keyWord: keyWord)
         } label: {
             Text(titulo)
+                .font(.headline)
                 .frame(width: 159, height: 104)
                 .foregroundStyle(.white)
                 .background(Color.black)
-                .cornerRadius(30)
+                .cornerRadius(20) 
         }
     }
 }

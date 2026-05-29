@@ -21,14 +21,6 @@ struct Card: Decodable, Identifiable {
     var imageURL: URL? {
         URL(string: "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards-150/\(key).png")
     }
-    
-    var imageCharacterURL: URL? {
-        URL(string: "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/chr/\(key.lowercased().replacingOccurrences(of: "-", with: "_")).png")
-    }
-    
-    var imageCharacterDLURL: URL? {
-        URL(string: "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/chr/\(key.lowercased().replacingOccurrences(of: "-", with: "_"))_dl.png")
-    }
 }
 
 extension Card {

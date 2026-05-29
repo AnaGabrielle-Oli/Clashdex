@@ -16,7 +16,7 @@ struct ContentView: View {
                 Label("Inicio", systemImage: "crown")
             }
             NavigationStack{
-                CreateDeckView()
+                CreateDeckView() 
             }.tabItem {
                 Label("Decks", systemImage: "book.closed.fill")
             }

@@ -7,110 +7,82 @@
 
 import SwiftUI
 
+
 struct CardView: View {
     let card: Card
     
-    var body: some View {
-        VStack(spacing: 20) {
-            
-            CardImageView(card: card)
-            
-            Text(card.name)
-                .font(.largeTitle)
-                .bold()
-            
-            TabView {
-                AboutPage(card: card)
-                
-                StatisticPage(card: card)
-            }
-            .tabViewStyle(.page)
-            .background(.gray)
-            .frame(width: 269, height: 237)
+    var backgroundColor: Color {
+        switch card.rarity {
+        case "Common":
+            return Color(red: 41/255, green: 124/255, blue: 179/255).opacity(0.2)
+        case "Rare":
+            return Color(red: 250/255, green: 137/255, blue: 8/255).opacity(0.2)
+        case "Epic":
+            return Color(red: 175/255, green: 113/255, blue: 253/255).opacity(0.2)
+        case "Legendary":
+            return Color(red: 250/255, green: 137/255, blue: 8/255).opacity(0.2)
+        default:
+            return Color.gray.opacity(0.2)
         }
-        .padding()
     }
+    
+    var body: some View {
+        
+        ZStack{
+            backgroundColor
+                .ignoresSafeArea()
+            VStack(spacing: 12) {
+                
+                CardImageView(card: card)
+                    .padding(.top, 20)
+                
+                Text(card.name)
+                    .font(.largeTitle)
+                    .bold()
+                
+                TabView {
+                    AboutPage(card: card)
+                    
+                    StatisticPage(card: card)
+                }
+                .tabViewStyle(.page)
+                .background(backgroundColor)
+                .frame(width: 280, height: 250)
+                .cornerRadius(20)
+                
+                Spacer()
+            }
+            .padding(.horizontal)
+            .padding(.top)
+            .padding(.bottom, 60)
+        }
+    }
+    
 }
 
 struct CardImageView: View {
     let card: Card
     
-    @State var isImageDL: Bool = false
-    
     var body: some View {
-//        AsyncImage(url: card.imageCharacterURL) { phase in
-//            image
-//                .resizable()
-//                .scaledToFill()
-//                .frame(width: 329, height: 342)
-//                .clipped()
-//                .cornerRadius(10)
-//        } placeholder: {
-//            ProgressView()
-//                .frame(width: 73, height: 96)
-//        }
         
-        if !isImageDL {
-            VStack{
-                
-            }
-            AsyncImage(url: card.imageCharacterURL) { phase in
-                switch phase {
-                case .empty:
-                    ProgressView()
-                        .frame(width: 73, height: 96)
-                
-                case .success(let image):
-                    image
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 329, height: 342)
-                        .clipped()
-                        .cornerRadius(10)
-                    
-                case .failure(let error):
-                    ProgressView()
-                        .frame(width: 73, height: 96)
-                        .onAppear {
-                            print("error: ", error.localizedDescription)
-                            isImageDL = true
-                            print(isImageDL)
-                            print(card.imageCharacterURL?.absoluteString)
-                        }
-                }
-            }
-        }
-        else {
-            AsyncImage(url: card.imageCharacterDLURL) { phase in
-                switch phase {
-                case .empty:
-                    ProgressView()
-                        .frame(width: 73, height: 96)
-                
-                case .success(let image):
-                    image
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 329, height: 342)
-                        .clipped()
-                        .cornerRadius(10)
-                    
-                case .failure(let error):
-                    ProgressView()
-                        .frame(width: 73, height: 96)
-                        .task {
-                            print("error DL: ", error.localizedDescription)
-                            print(card.imageCharacterDLURL?.absoluteString)
-                        }
-                }
-            }
+        if let path = Bundle.main.path(
+            forResource: card.key,
+            ofType: "png"
+        ),
+           let uiImage = UIImage(contentsOfFile: path) {
+            Image(uiImage: uiImage)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 500, height: 300)
+            
+        } else {
+            ProgressView()
         }
     }
 }
-
 struct AboutPage: View {
     let card: Card
-        
+    
     var body: some View {
         VStack(spacing: 12) {
             Text("Sobre")
