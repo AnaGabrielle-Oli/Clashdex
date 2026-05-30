@@ -39,7 +39,8 @@ struct SearchView: View {
                     GridView(keyWord: searchText)
                 }
             }
-            .navigationTitle(searchText.isEmpty ? "Buscar" : "Resultados")
+            .navigationTitle("Buscar")
+            .padding(20)
             .navigationBarTitleDisplayMode(.large)
             .searchable(
                 text: $searchText,
@@ -55,16 +56,18 @@ struct CategoriaBusca: View {
     var titulo: String
     var keyWord: String
     
+    
     var body: some View {
         NavigationLink {
             GridView(keyWord: keyWord)
         } label: {
             Text(titulo)
-                .font(.headline)
+                .font(.title3)
                 .frame(width: 159, height: 104)
-                .foregroundStyle(.white)
-                .background(Color.black)
+                .foregroundStyle(.black)
+                .background(Color.gray.opacity(0.6))
                 .cornerRadius(20)
+            
         }
     }
 }

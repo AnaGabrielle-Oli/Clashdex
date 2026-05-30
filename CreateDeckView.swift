@@ -17,9 +17,8 @@ struct CreateDeckView: View {
 struct CardSelected: View{
     
     var body: some View{
-        Button(""){
-            
-        }.frame(width: 73, height: 96)
+        Rectangle()
+            .frame(width: 73, height: 96)
             .foregroundStyle(.white)
             .background(Color.gray)
             .cornerRadius(10)
@@ -31,6 +30,7 @@ struct CardSelected: View{
 struct DeckBar: View{
     
     var body: some View{
+        
         Button{
             
         }label: {

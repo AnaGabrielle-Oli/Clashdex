@@ -10,39 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         TabView {
-//            NavigationStack {
-//                ZStack {
-//                    appGradient
-//                    InitialView()
-//                }
-//            }
-//            .tabItem {
-//                Label("Inicio", systemImage: "crown")
-//            }
-//
-//            NavigationStack {
-//                ZStack {
-//                    appGradient
-//                    VStack{ 
-//                        CreateDeckView()
-//
-//                    }
-//                }
-//            }
-//            .tabItem {
-//                Label("Decks", systemImage: "book.closed.fill")
-//            }
-//
-//            NavigationStack {
-//                ZStack {
-//                    appGradient
-//                    SearchView()
-//                }
-//            }
-//            .tabItem {
-//                Label("Buscar", systemImage: "magnifyingglass",role)
-//            }
-            
+
             Tab("Inicio", systemImage: "crown") {
                 NavigationStack {
                     ZStack {

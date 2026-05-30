@@ -153,5 +153,5 @@ struct CardInGrid: View {
 }
 
 #Preview {
-    GridView(keyWord: "id")
+    GridView(keyWord: "Common")
 }

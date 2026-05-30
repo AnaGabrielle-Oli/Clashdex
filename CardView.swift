@@ -22,7 +22,7 @@ struct CardView: View {
         case "Legendary":
             return Color(red: 82/255, green: 205/255, blue: 161/255).opacity(0.2)
         case "Champion":
-            return Color(red: 255/255, green: 220/255, blue: 54/255).opacity(0.2)
+            return Color(red: 25/255, green: 220/255, blue: 54/255).opacity(0.2)
         default:
             return Color.gray.opacity(0.2)
         }
@@ -36,9 +36,11 @@ struct CardView: View {
             VStack(spacing: 8) {
                 
                 Text(card.name)
+                    
                     .font(.largeTitle)
                     .bold()
                     .padding(.top, 20)
+                
                 CardImageView(card: card)
                     .padding(.bottom, -40)
                     
@@ -90,7 +92,7 @@ struct AboutPage: View {
     let card: Card
     
     var body: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: 12) {
             Text("Sobre")
                 .font(.title2)
                 .bold()

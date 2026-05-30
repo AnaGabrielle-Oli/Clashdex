@@ -15,7 +15,7 @@ struct CardsAPI {
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }
-
+    
     static func fetchCard(_ filterType: String? = nil, _ typeInFilter: String? = nil) async throws -> [Card] {
         let request = URLRequest(url: endpoint, cachePolicy: .reloadIgnoringLocalCacheData)
 
